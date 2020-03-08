@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
+
+    <!--配置包扫描-->
+    <context:component-scan base-package="com.java.*" />
+
+    <!--开启mvc的注解驱动-->
+    <mvc:annotation-driven />
+
+    <!--配置视图解析器:InternalResourceViewResolver-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置前缀-->
+        <property name="prefix" value="/pages/admin/"></property>
+        <!--配置后缀-->
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--配置文件上传:CommonsMultipartResolver-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--配置编码格式-->
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!--配置文件的单个大小:Byte-->
+        <property name="maxUploadSizePerFile" value="1048576"></property>
+        <!--配置总文件上传大小-->
+        <property name="maxUploadSize" value="10485760"></property>
+    </bean>
+
+</beans>
